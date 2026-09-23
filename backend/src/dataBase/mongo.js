@@ -1,10 +1,10 @@
 import { MongoClient } from 'mongodb';
 
-// Armazena a conexão globalmente para ser reaproveitada nas chamadas Serverless
-let cachedClient = global._mongoClient;
-let cachedDb = global._mongoDb;
-
 export const Mongo = {
+    db: null,
+    client: null,
+    asyncConnectPromise: null,
+
     async connect({ mongoConnectString, mongoDbName } = {}) {
         const connectionString = mongoConnectString || process.env.MONGO_CS;
         const dbName = mongoDbName || process.env.MONGO_DB_NAME;
@@ -14,27 +14,35 @@ export const Mongo = {
             throw new Error("Variáveis de ambiente do MongoDB não encontradas.");
         }
 
-        // Se já existe conexão reaproveitável, retorna o banco direto
-        if (cachedDb) {
-            return cachedDb;
+        if (this.db) {
+            return this.db;
         }
 
-        try {
-            console.log("🔄 Conectando ao MongoDB Atlas...");
-            if (!cachedClient) {
-                cachedClient = new MongoClient(connectionString);
-                await cachedClient.connect();
-                global._mongoClient = cachedClient;
+        // Se já houver uma tentativa de conexão em andamento, aguarda ela terminar
+        if (this.asyncConnectPromise) {
+            return await this.asyncConnectPromise;
+        }
+
+        this.asyncConnectPromise = (async () => {
+            try {
+                console.log("🔄 Conectando ao MongoDB Atlas...");
+                const client = new MongoClient(connectionString);
+                await client.connect();
+                
+                this.client = client;
+                this.db = client.db(dbName);
+
+                console.log(`✅ MongoDB conectado com sucesso no banco: ${dbName}`);
+                return this.db;
+            } catch (error) {
+                console.error("❌ Falha na conexão com o MongoDB:", error.message);
+                this.client = null;
+                this.db = null;
+                this.asyncConnectPromise = null;
+                throw error;
             }
+        })();
 
-            cachedDb = cachedClient.db(dbName);
-            global._mongoDb = cachedDb;
-
-            console.log(`✅ MongoDB conectado com sucesso no banco: ${dbName}`);
-            return cachedDb;
-        } catch (error) {
-            console.error("❌ Falha na conexão com o MongoDB:", error.message);
-            throw error;
-        }
+        return await this.asyncConnectPromise;
     }
 };

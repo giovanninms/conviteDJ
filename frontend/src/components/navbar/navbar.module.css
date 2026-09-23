@@ -1,0 +1,45 @@
+.navbarContainer {
+    display: flex;
+    align-items: center; /* Centraliza perfeitamente os ícones na vertical */
+    justify-content: center;
+    flex-direction: row;
+    height: 65px; /* Altura cravada e fixa */
+    width: 20rem;
+    position: fixed;
+    bottom: 25px; /* Ajuste fixo em relação ao fundo da tela */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #9c4b96;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .18);
+    border-radius: 35px;
+    opacity: 0.9;
+    box-sizing: border-box;
+    max-width: calc(100vw - 32px);
+    z-index: 1000;
+}
+
+.navbarItems {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.navbarLinksContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    gap: 1em;
+}
+
+.navbarLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Tamanho do ícone em px ou rem fixo para evitar esticar */
+    font-size: 1.5rem; 
+    color: #fff;
+}

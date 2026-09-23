@@ -1,0 +1,13 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente
+.env
+*.env
+
+# Builds do Vite
+dist/
+build/
+
+# Arquivos de sistema
+.DS_Store

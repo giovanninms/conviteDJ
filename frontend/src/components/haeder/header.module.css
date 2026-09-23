@@ -1,0 +1,16 @@
+.headerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Troque de 30dvh para uma altura fixa ou 'svh' (Small Viewport Height) */
+    height: 180px; /* ou 20svh / 12rem */
+    margin: 0;
+    padding: 0;
+}
+
+.headerLogo {
+    height: 100%;
+    /* Adicione max-height para a imagem nunca estourar */
+    max-height: 100%;
+    object-fit: contain;
+}

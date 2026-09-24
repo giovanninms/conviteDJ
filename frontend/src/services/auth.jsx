@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function AuthServices() {
     const [authLoanding, setAuthLoanding] = useState(false);
     const navigate = useNavigate();
-    const url = 'convitebackend-e4bjchfaaaeqc6ah.chilecentral-01.azurewebsites.net/auth';
+    const url = 'https://convite-dj.vercel.app/auth';
 
     // Função de Redirecionamento Centralizada
     const handleNavigationAfterAuth = (user) => {

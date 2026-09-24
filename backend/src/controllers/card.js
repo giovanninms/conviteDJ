@@ -78,12 +78,12 @@ async createCheckoutLink(reqData) {
 
         const orderNsu = `${userId || 'anonimo'}_${giftId || 'presente'}_${Date.now()}`;
 
-        let frontendUrl = process.env.FRONTEND_URL || "convitebackend-e4bjchfaaaeqc6ah.chilecentral-01.azurewebsites.net/cart";
+        let frontendUrl = process.env.FRONTEND_URL || "https://convite-dj.vercel.app//cart";
         if (!frontendUrl.startsWith('http://') && !frontendUrl.startsWith('https://')) {
             frontendUrl = `https://${frontendUrl}`;
         }
 
-        const backendUrl = process.env.BACKEND_URL || "convitebackend-e4bjchfaaaeqc6ah.chilecentral-01.azurewebsites.net";
+        const backendUrl = process.env.BACKEND_URL || "https://convite-dj.vercel.app/";
         const webhookUrl = `${backendUrl}/card/payment/webhook`;
 
         const response = await fetch("https://api.checkout.infinitepay.io/links", {

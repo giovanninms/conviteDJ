@@ -14,7 +14,7 @@ export default function GiftServices() {
     // Verifica se o usuário logado é o casal/admin
     const isAdmin = authData?.user?.isAdmin === true || authData?.user?.role === 'admin';
 
-    const url = 'convitebackend-e4bjchfaaaeqc6ah.chilecentral-01.azurewebsites.net/gifts';
+    const url = 'https://convite-dj.vercel.app/gifts';
     
     const getGift = useCallback(async () => {
     setGiftLoading(true);
@@ -146,7 +146,7 @@ const updateGift = async (giftId, giftData) => {
             const giftName = gift.name || gift.giftName;
             const giftPrice = gift.price;
 
-            const response = await fetch('convitebackend-e4bjchfaaaeqc6ah.chilecentral-01.azurewebsites.net/card/payment/checkout', {
+            const response = await fetch('https://convite-dj.vercel.app/card/payment/checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

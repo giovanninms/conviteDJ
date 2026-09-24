@@ -6,7 +6,7 @@ export default function CartServices() {
     const [refectGifts, setRefectGifts] = useState(true)
     const [cartList, setCartList] = useState({})
 
-    const url = 'convitebackend-e4bjchfaaaeqc6ah.chilecentral-01.azurewebsites.net/card'
+    const url = 'https://convite-dj.vercel.app/card'
 
     const getUserCart = (usersId) => {
         setCartLoading(true)

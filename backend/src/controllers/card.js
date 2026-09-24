@@ -78,7 +78,7 @@ async createCheckoutLink(reqData) {
 
         const orderNsu = `${userId || 'anonimo'}_${giftId || 'presente'}_${Date.now()}`;
 
-        let frontendUrl = process.env.FRONTEND_URL || "https://convite-dj.vercel.app//cart";
+        let frontendUrl = process.env.FRONTEND_URL || "https://convite-dj.vercel.app/cart";
         if (!frontendUrl.startsWith('http://') && !frontendUrl.startsWith('https://')) {
             frontendUrl = `https://${frontendUrl}`;
         }

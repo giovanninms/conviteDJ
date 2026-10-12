@@ -83,7 +83,7 @@ async createCheckoutLink(reqData) {
             frontendUrl = `https://${frontendUrl}`;
         }
 
-        const backendUrl = process.env.BACKEND_URL || "https://convite-dj.vercel.app/";
+        const backendUrl = process.env.BACKEND_URL || "https://convite-dj.vercel.app";
         const webhookUrl = `${backendUrl}/card/payment/webhook`;
 
         const response = await fetch("https://api.checkout.infinitepay.io/links", {
